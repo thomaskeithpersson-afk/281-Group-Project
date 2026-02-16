@@ -60,9 +60,9 @@ BookExchange connects students who want to sell textbooks with students who need
 
 ## Course
 
-ENSE 281 - Software Engineering  
+ENSE 281 - Software Engineering Management
 University of Regina  
-Instructor: Dr. Tim Maciag
+Instructor: Dr.Tim Maciag
 
 ## How to Run
 
