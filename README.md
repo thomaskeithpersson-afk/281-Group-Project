@@ -53,16 +53,16 @@ BookExchange connects students who want to sell textbooks with students who need
 
 ## Team
 
-- Thomas P.
-- Chop Peter
-- David
-- Shaikh
+- Chop Peter Kur
+- Thomas Persson 
+- David James-Nwokocha 
+- Shaikh Chand Muhammad Sham
 
 ## Course
 
 ENSE 281 - Software Engineering  
 University of Regina  
-Instructor: Tim
+Instructor: Dr. Tim Maciag
 
 ## How to Run
 
