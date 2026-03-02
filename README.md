@@ -56,7 +56,7 @@ BookExchange connects students who want to sell textbooks with students who need
 - Chop Peter Kur
 - Thomas Persson 
 - David James-Nwokocha 
-- Shaikh Chand Muhammad Sham
+- Shaikh Chand Muhammad Shami
 
 ## Course
 
