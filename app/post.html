@@ -9,11 +9,15 @@
 <body>
 
   <nav>
-    <a href="index.html" class="nav-logo">Book<span>Exchange</span></a>
+    <a href="index.html" class="nav-logo">&#128218; Book<span>Exchange</span></a>
     <div class="nav-links">
-      <a href="index.html">Home</a>
-      <a href="browse.html">Browse</a>
-      <a href="post.html" class="btn-nav active">+ Post a Book</a>
+      <a href="index.html" class="nav-icon-link" title="Home">&#127968;</a>
+      <a href="browse.html">Search</a>
+      <a href="post.html" class="active">Post</a>
+      <a href="my-listings.html">My Listings</a>
+      <a href="how-it-works.html">How It Works</a>
+      <a href="safety-tips.html">Safety Tips</a>
+      <a href="#" class="nav-icon-link" title="Account">&#128100;</a>
     </div>
   </nav>
 
@@ -36,7 +40,7 @@
           type="text"
           id="title"
           name="title"
-          placeholder="e.g. Calculus: Early Transcendentals"
+          placeholder="e.g. Introduction to Statistics"
           required
           maxlength="200"
         >
@@ -49,11 +53,10 @@
             type="text"
             id="courseCode"
             name="courseCode"
-            placeholder="e.g. MATH 110"
+            placeholder="e.g. STAT 289"
             required
             maxlength="20"
           >
-          <div class="form-hint">Will be displayed in uppercase.</div>
         </div>
         <div class="form-group">
           <label for="price">Asking Price ($) <span class="required">*</span></label>
@@ -70,19 +73,41 @@
       </div>
 
       <div class="form-group">
+        <label for="department">Department <span class="required">*</span></label>
+        <select id="department" name="department" required>
+          <option value="" disabled selected>e.g. MATH, ENSE</option>
+          <option value="ENSE">ENSE &mdash; Engineering Software</option>
+          <option value="ENEL">ENEL &mdash; Engineering Electronics</option>
+          <option value="ENIN">ENIN &mdash; Engineering Industrial</option>
+          <option value="MATH">MATH &mdash; Mathematics</option>
+          <option value="STAT">STAT &mdash; Statistics</option>
+          <option value="PSYC">PSYC &mdash; Psychology</option>
+          <option value="BIOL">BIOL &mdash; Biology</option>
+          <option value="CHEM">CHEM &mdash; Chemistry</option>
+          <option value="PHYS">PHYS &mdash; Physics</option>
+          <option value="CS">CS &mdash; Computer Science</option>
+          <option value="BUS">BUS &mdash; Business</option>
+          <option value="ECON">ECON &mdash; Economics</option>
+          <option value="ENGL">ENGL &mdash; English</option>
+          <option value="HIST">HIST &mdash; History</option>
+          <option value="OTHER">OTHER &mdash; Other</option>
+        </select>
+      </div>
+
+      <div class="form-group">
         <label for="condition">Condition <span class="required">*</span></label>
         <select id="condition" name="condition" required>
           <option value="" disabled selected>Select condition...</option>
           <option value="New">New</option>
           <option value="Like New">Like New &mdash; minimal use, no markings</option>
-          <option value="Good">Good &mdash; some highlighting/notes</option>
-          <option value="Fair">Fair &mdash; heavy use, intact</option>
-          <option value="Poor">Poor &mdash; damage but readable</option>
+          <option value="Good">Used &mdash; some highlighting/notes</option>
+          <option value="Fair">Bad &mdash; heavy use, intact</option>
+          <option value="Poor">Bad Bad &mdash; damage but readable</option>
         </select>
       </div>
 
       <div class="form-group">
-        <label for="description">Additional Notes <span class="optional">(optional)</span></label>
+        <label for="description">Optional Descriptions/Notes <span class="optional">(optional)</span></label>
         <textarea
           id="description"
           name="description"
@@ -92,42 +117,29 @@
       </div>
 
       <!-- Seller Info -->
-      <div class="form-section-label">Your Contact Info</div>
+      <div class="form-section-label">Campus Connection</div>
 
       <div class="form-group">
-        <label for="sellerName">Your Name <span class="required">*</span></label>
+        <label for="sellerName">Your Name/Handle <span class="required">*</span></label>
         <input
           type="text"
           id="sellerName"
           name="sellerName"
-          placeholder="e.g. Alex Smith"
+          placeholder="e.g. Chap P"
           required
           maxlength="100"
         >
       </div>
 
-      <div class="form-row">
-        <div class="form-group">
-          <label for="sellerEmail">Email <span class="required">*</span></label>
-          <input
-            type="email"
-            id="sellerEmail"
-            name="sellerEmail"
-            placeholder="e.g. you@uregina.ca"
-            required
-            maxlength="150"
-          >
-        </div>
-        <div class="form-group">
-          <label for="sellerPhone">Phone <span class="optional">(optional)</span></label>
-          <input
-            type="tel"
-            id="sellerPhone"
-            name="sellerPhone"
-            placeholder="e.g. 306-555-0100"
-            maxlength="20"
-          >
-        </div>
+      <div class="form-group">
+        <label for="contactDetail">Contact Detail <span class="optional">(optional)</span></label>
+        <input
+          type="text"
+          id="contactDetail"
+          name="contactDetail"
+          placeholder="your email address or phone number"
+          maxlength="200"
+        >
       </div>
 
       <div class="alert alert-warning" style="font-size:0.88rem">
@@ -135,8 +147,8 @@
       </div>
 
       <div class="form-actions">
-        <a href="browse.html" class="btn btn-secondary">Cancel</a>
-        <button type="submit" class="btn btn-primary">Post Listing</button>
+        <button type="button" class="btn btn-secondary" onclick="location.href='browse.html'">Cancel</button>
+        <button type="submit" class="btn btn-primary">Publish Listing</button>
       </div>
     </form>
 

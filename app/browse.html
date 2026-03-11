@@ -9,11 +9,15 @@
 <body>
 
   <nav>
-    <a href="index.html" class="nav-logo">Book<span>Exchange</span></a>
+    <a href="index.html" class="nav-logo">&#128218; Book<span>Exchange</span></a>
     <div class="nav-links">
-      <a href="index.html">Home</a>
-      <a href="browse.html" class="active">Browse</a>
-      <a href="post.html" class="btn-nav">+ Post a Book</a>
+      <a href="index.html" class="nav-icon-link" title="Home">&#127968;</a>
+      <a href="browse.html" class="active">Search</a>
+      <a href="post.html">Post</a>
+      <a href="my-listings.html">My Listings</a>
+      <a href="how-it-works.html">How It Works</a>
+      <a href="safety-tips.html">Safety Tips</a>
+      <a href="#" class="nav-icon-link" title="Account">&#128100;</a>
     </div>
   </nav>
 
@@ -25,42 +29,51 @@
   </div>
 
   <div class="container">
+    <div class="browse-layout">
 
-    <!-- Search & Filters -->
-    <div class="search-bar">
-      <input
-        type="search"
-        id="search-input"
-        placeholder="Search by course code or book title..."
-        autocomplete="off"
-        aria-label="Search listings"
-      >
-      <select id="condition-select" aria-label="Filter by condition">
-        <option value="all">All Conditions</option>
-        <option value="New">New</option>
-        <option value="Like New">Like New</option>
-        <option value="Good">Good</option>
-        <option value="Fair">Fair</option>
-        <option value="Poor">Poor</option>
-      </select>
-      <select id="filter-select" aria-label="Filter by availability">
-        <option value="all">All Listings</option>
-        <option value="available">Available Only</option>
-        <option value="sold">Sold Only</option>
-      </select>
+      <!-- Sidebar Filters -->
+      <aside class="filter-sidebar">
+        <div class="filter-group">
+          <label class="filter-label" for="dept-select">Department</label>
+          <select id="dept-select" aria-label="Filter by department">
+            <option value="all">All Departments</option>
+          </select>
+        </div>
+        <div class="filter-group">
+          <label class="filter-label" for="course-number-input">Course Number</label>
+          <input type="text" id="course-number-input" placeholder="e.g. 101" autocomplete="off" aria-label="Filter by course number">
+        </div>
+        <div class="filter-group">
+          <div class="filter-label">Condition</div>
+          <label class="checkbox-label"><input type="checkbox" name="condition" value="New"> New</label>
+          <label class="checkbox-label"><input type="checkbox" name="condition" value="Like New"> Like New</label>
+          <label class="checkbox-label"><input type="checkbox" name="condition" value="Good"> Used</label>
+          <label class="checkbox-label"><input type="checkbox" name="condition" value="Fair"> Bad</label>
+          <label class="checkbox-label"><input type="checkbox" name="condition" value="Poor"> Bad Bad</label>
+        </div>
+        <div class="filter-group">
+          <div class="filter-label">Price</div>
+          <div class="price-range-labels">
+            <span id="price-min-label">$0</span>
+            <span id="price-max-label">$500</span>
+          </div>
+          <input type="range" id="price-max-range" min="0" max="500" value="500" step="5" class="price-range" aria-label="Maximum price">
+        </div>
+        <button class="btn btn-secondary btn-block" id="clear-filters-btn" onclick="clearBrowseFilters()" style="margin-top:0.5rem">Clear Filters</button>
+      </aside>
+
+      <!-- Main Content -->
+      <div class="browse-main">
+        <div class="browse-toolbar">
+          <span class="results-count" id="results-count"></span>
+          <a href="post.html" class="btn btn-primary btn-sm">+ Post a Book</a>
+        </div>
+        <div class="listings-grid" id="listings-grid">
+          <!-- Populated by script.js -->
+        </div>
+      </div>
+
     </div>
-
-    <!-- Toolbar -->
-    <div class="browse-toolbar">
-      <span class="results-count" id="results-count"></span>
-      <a href="post.html" class="btn btn-primary btn-sm">+ Post a Book</a>
-    </div>
-
-    <!-- Listings -->
-    <div class="listings-grid" id="listings-grid">
-      <!-- Populated by script.js -->
-    </div>
-
   </div>
 
   <footer>
