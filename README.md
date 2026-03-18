@@ -50,10 +50,11 @@ BookExchange connects students who want to sell textbooks with students who need
 ## 💻 How to Run the Project (Localhost)
 1. **Clone the repository:**
    ```bash
-2. **Navigate to the app folder:
+      git clone [https://github.com/thomaskeithpersson-afk/281-Group-Project.git](https://github.com/thomaskeithpersson-afk/281-Group-Project.git)
+2. ** Navigate to the app folder:
     cd 281-Group-Project
 
-3. **Run the application:
+3. ** Run the application:
     Follow local environment setup instructions, typically npm install followed by npm start, or open the main index.html file directly in your          browser).
 
 ## 🚧 Current Limitations (Out of Scope)
@@ -99,5 +100,4 @@ Plaintext
 ## 🎓 Course
 ENSE 281 - Software Engineering Management University of Regina
 
-Instructor: Dr. Tim Maciag
-   git clone [https://github.com/thomaskeithpersson-afk/281-Group-Project.git](https://github.com/thomaskeithpersson-afk/281-Group-Project.git)
+** Instructor: Dr. Tim Maciag
