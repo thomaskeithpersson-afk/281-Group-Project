@@ -1,0 +1,511 @@
+/*1. Base Setup & U of R Color Palette */
+:root {
+    --ur-green: #005030;    
+    --ur-gold: #fbb827;      
+    --dark-green: #003620;
+    --light-bg: #f4f6f8;
+    --card-bg: #ffffff;
+    --text-main: #333333;
+    --text-muted: #666666;
+    --border-color: #e0e0e0;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: var(--light-bg);
+    color: var(--text-main);
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/*2. Navigation Bar (Dark Green Theme)*/
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--ur-green);
+    padding: 1rem 3rem;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.nav-left {
+    display: flex;
+    align-items: center;
+    gap: 3rem;
+}
+.logo-link {
+    display: flex;
+    align-items: center;
+    margin-left: -1.5rem;
+}
+
+.nav-brand-logo {
+    height: 65px;
+    width: auto;
+    transform: scale(1.3);
+    transform-origin: left center; 
+    transition: transform 0.2s;
+}
+
+.nav-brand-logo:hover {
+    transform: scale(1.45);
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 2rem;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-links a {
+    color: white;
+    font-weight: 500;
+    transition: color 0.2s;
+}
+
+.nav-links a:hover {
+    color: var(--ur-gold);
+}
+
+.nav-right {
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+}
+
+.login-btn, .signup-btn {
+    color: white;
+    font-weight: bold;
+}
+
+.login-btn:hover, .signup-btn:hover {
+    color: var(--ur-gold);
+}
+
+.logout-btn {
+    background-color: #d9534f;
+    color: white !important;
+    padding: 0.5rem 1.2rem;
+    border-radius: 4px;
+    font-weight: bold;
+    transition: background-color 0.2s;
+}
+
+.logout-btn:hover {
+    background-color: #c9302c;
+}
+
+/*3. Buttons & Inputs*/
+button {
+    padding: 0.75rem 1.5rem;
+    background-color: var(--ur-green);
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: bold;
+    transition: background-color 0.2s, transform 0.1s;
+}
+
+button:hover {
+    background-color: var(--dark-green);
+}
+
+.sell-btn {
+    background-color: var(--ur-gold);
+    color: #111;
+}
+
+.sell-btn:hover {
+    background-color: #e5a519;
+}
+
+input[type="text"], input[type="number"], input[type="password"], select, textarea {
+    padding: 0.75rem;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    font-size: 1rem;
+    width: 100%;
+    box-sizing: border-box;
+    font-family: inherit;
+}
+
+/*4. Homepage Hero & Statistics*/
+.hero {
+    background-color: var(--card-bg);
+    padding: 3rem 0;
+    border-bottom: 1px solid var(--border-color);
+    text-align: center;
+}
+
+.hero h1 {
+    font-size: 2.8rem;
+    color: #111;
+    margin-bottom: 0.5rem;
+    margin-top: 0;
+}
+
+.hero-subtext {
+    font-size: 1.3rem;
+    color: #444;
+    margin-bottom: 2rem;
+}
+
+.search-actions {
+    display: flex;
+    justify-content: center;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.hero-search-form {
+    display: flex;
+    flex: 1;
+    gap: 0.5rem;
+}
+
+.stats-row {
+    display: flex;
+    justify-content: center;
+    gap: 4rem;
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--border-color);
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.stat-box {
+    text-align: center;
+}
+
+.stat-box h3 {
+    margin: 0 0 0.5rem 0;
+    font-size: 1.8rem;
+    color: var(--ur-green);
+}
+
+.stat-box p {
+    margin: 0;
+    color: var(--text-muted);
+    font-weight: 500;
+}
+
+.highlight-stat h3 {
+    color: var(--ur-gold);
+}
+
+/*5. Main Book Grid & Cards*/
+.home-listings {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+.home-listings h3 {
+    font-size: 1.5rem;
+    color: #222;
+    margin-bottom: 1.5rem;
+    border-bottom: 2px solid var(--ur-green);
+    padding-bottom: 0.5rem;
+    display: inline-block;
+}
+
+.book-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 2rem;
+    margin-bottom: 3rem;
+}
+
+.book-card {
+    background: var(--card-bg);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.06);
+    border: 1px solid var(--border-color);
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.book-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+}
+
+.book-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.book-details {
+    padding: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.dept-tag {
+    font-size: 0.75rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: var(--ur-green);
+    letter-spacing: 1px;
+    margin-bottom: 0.25rem;
+    display: block;
+}
+
+.book-details h4 {
+    margin: 0 0 0.5rem 0;
+    font-size: 1.15rem;
+    color: var(--text-main);
+}
+
+.book-details .course {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    margin: 0 0 1rem 0;
+}
+
+.book-details .price {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--ur-green);
+    margin: auto 0 0.5rem 0;
+}
+
+.book-details .condition {
+    display: inline-block;
+    background-color: var(--light-bg);
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    width: fit-content;
+}
+
+.view-details-btn {
+    width: 100%;
+    margin-top: 1rem;
+    padding: 0.6rem;
+    border-radius: 6px;
+    background-color: var(--ur-green);
+    color: white;
+}
+
+/*6. Clean Post Form Layout*/
+.post-page-layout {
+    background-color: var(--light-bg);
+    padding: 3rem 1rem;
+    min-height: 80vh;
+}
+
+.clean-form-card {
+    background: white;
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 2.5rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    border: 1px solid var(--border-color);
+}
+
+.clean-form-card h2 {
+    color: var(--text-main);
+    margin-top: 0;
+    margin-bottom: 1.5rem;
+    font-size: 1.4rem;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 0.5rem;
+}
+
+.clean-form-card form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+}
+
+.clean-form-card label {
+    font-weight: 600;
+    color: #555;
+    margin-bottom: -0.5rem;
+    font-size: 0.9rem;
+}
+
+.clean-form-card textarea {
+    resize: vertical;
+}
+
+.image-upload-wrapper {
+    border: 2px dashed var(--border-color);
+    padding: 1.5rem;
+    text-align: center;
+    border-radius: 8px;
+    background-color: var(--light-bg);
+}
+
+.image-preview {
+    margin-top: 1rem;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+}
+
+.publish-btn {
+    margin-top: 1rem;
+    width: 100%;
+}
+
+.cancel-btn {
+    text-align: center;
+    display: block;
+    margin-top: 0.5rem;
+    color: #666;
+}
+
+.cancel-btn:hover {
+    text-decoration: underline;
+}
+
+/*7. Auth Forms (Login / Signup)*/
+.center-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 80vh;
+}
+
+.auth-card {
+    background: var(--card-bg);
+    padding: 2.5rem;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+    width: 100%;
+    max-width: 400px;
+}
+
+.auth-card h1 {
+    margin-top: 0;
+    color: var(--ur-green);
+    margin-bottom: 1.5rem;
+}
+
+.auth-card form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.error-msg {
+    color: #d9534f;
+    background: #fdf7f7;
+    padding: 0.75rem;
+    border-radius: 6px;
+    border: 1px solid #ebccd1;
+    margin-bottom: 1rem;
+}
+
+.switch-link {
+    text-align: center;
+    margin-top: 1.5rem;
+    font-size: 0.9rem;
+}
+
+.switch-link a {
+    color: var(--ur-green);
+    font-weight: bold;
+}
+/*8. Advanced Search Page Layout*/
+.search-layout {
+    display: flex;
+    max-width: 1300px;
+    margin: 2rem auto;
+    padding: 0 2rem;
+    gap: 3rem;
+    align-items: flex-start;
+}
+.search-sidebar {
+    width: 280px;
+    flex-shrink: 0;
+    background: var(--card-bg);
+    padding: 1.5rem;
+    border-radius: 12px;
+    border: 1px solid var(--border-color);
+}
+.filter-group {
+    margin-bottom: 1.5rem;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 1.5rem;
+}
+.filter-group h4 {
+    margin: 0 0 0.5rem 0;
+    color: var(--ur-green);
+    font-size: 0.95rem;
+}
+.price-inputs {
+    display: flex;
+    gap: 0.5rem;
+}
+.search-results {
+    flex: 1;
+}
+.search-results h1 {
+    margin-top: 0;
+    color: var(--ur-green);
+}
+.apply-filters-btn {
+    width: 100%;
+}
+/* 9. My Listings Page Layout */
+.my-listings-layout {
+    max-width: 1200px;
+    margin: 3rem auto; 
+    padding: 0 2rem;
+}
+
+.section-header {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.section-header h1 {
+    color: var(--ur-green);
+    font-size: 2.2rem;
+    margin-bottom: 0.5rem;
+}
+
+.section-header p {
+    color: var(--text-muted);
+    font-size: 1.1rem;
+}
+.centered-grid {
+    justify-content: center; 
+}
+.empty-state {
+    text-align: center;
+    padding: 4rem 2rem;
+    background: var(--card-bg);
+    border-radius: 12px;
+    border: 2px dashed var(--border-color);
+    max-width: 600px;
+    margin: 0 auto;
+}
+.empty-state h3 {
+    color: var(--ur-green);
+    font-size: 1.5rem;
+    margin-top: 0;
+}

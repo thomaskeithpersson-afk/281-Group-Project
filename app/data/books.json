@@ -1,0 +1,24 @@
+[
+  {
+    "id": "b3e9a7e6-123c-4a3e-b9e7-4f123abc4567",
+    "title": "Introduction to Software Engineering",
+    "department": "ENSE",
+    "courseNumber": "381",
+    "price": 75,
+    "condition": "Like New",
+    "genre": "Academic",
+    "imageUrl": "/uploads/example-se.jpg",
+    "sellerId": "user-uuid-1"
+  },
+  {
+    "id": "5f1a2b3c-4d5e-6f7a-8b9c-0d1e2f3a4b5c",
+    "title": "Clean Code",
+    "department": "CS",
+    "courseNumber": "210",
+    "price": 45,
+    "condition": "Used",
+    "genre": "Technology",
+    "imageUrl": "/uploads/example-code.jpg",
+    "sellerId": "user-uuid-1"
+  }
+]

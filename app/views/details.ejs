@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title><%= book.title %> - BookExchange</title>
+    <link rel="stylesheet" href="/style.css">
+    <style>
+        .details-container {
+            max-width: 900px;
+            margin: 3rem auto;
+            background: white;
+            padding: 2.5rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            display: flex;
+            gap: 3rem;
+            border: 1px solid var(--border-color);
+        }
+        .details-image {
+            flex: 1;
+            max-width: 400px;
+        }
+        .details-image img {
+            width: 100%;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+        }
+        .details-info {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        .details-info h1 {
+            margin: 0;
+            color: var(--text-main);
+            font-size: 2rem;
+        }
+        .details-price {
+            font-size: 2.5rem;
+            color: var(--ur-green);
+            font-weight: bold;
+            margin: 0.5rem 0;
+        }
+        .seller-card {
+            background: var(--light-bg);
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-top: 1rem;
+            border: 1px solid var(--border-color);
+        }
+        .seller-card h3 {
+            margin-top: 0;
+            color: var(--ur-green);
+        }
+        .notes-section {
+            margin-top: 1rem;
+            line-height: 1.6;
+            color: #444;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-left">
+            <h2 class="logo"><a href="/">BookExchange</a></h2>
+            <ul class="nav-links">
+                <li><a href="/">Home</a></li>
+                <li><a href="/search">Search</a></li>
+                <li><a href="/post">Post</a></li>
+                <% if (user && user.userId) { %>
+                    <li><a href="/my-listings">My Listings</a></li>
+                <% } %>
+            </ul>
+        </div>
+        <div class="nav-right">
+            <% if (user && user.userId) { %>
+                <a href="/logout" class="logout-btn">Logout</a>
+            <% } else { %>
+                <a href="/login" class="login-btn">Login</a>
+                <a href="/signup" class="signup-btn">Sign up</a>
+            <% } %>
+        </div>
+    </nav>
+    <main>
+        <div class="details-container">
+            <div class="details-image">
+                <img src="<%= book.imageUrl %>" alt="<%= book.title %>">
+            </div>
+            <div class="details-info">
+                <span class="dept-tag"><%= book.department %> <%= book.courseNumber %></span>
+                <h1><%= book.title %></h1>
+                <p class="condition">Condition: <strong><%= book.condition %></strong></p>
+                <div class="details-price">$<%= book.price %></div>
+                
+                <div class="notes-section">
+                    <h3>Description / Notes</h3>
+                    <p><%= book.notes ? book.notes : "No additional description provided by the seller." %></p>
+                </div>
+
+                <div class="seller-card">
+    <h3>Contact the Seller</h3>
+    <p><strong>Seller:</strong> <%= book.sellerName || "Anonymous Student" %></p>
+    <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 1rem;">
+        Fill out this form to send an email to the seller. Your email address will be shared with them so they can reply.
+    </p>
+    <form action="/contact-seller/<%= book.id %>" method="POST" style="display: flex; flex-direction: column; gap: 1rem;">
+        <div>
+            <label style="font-weight: bold; font-size: 0.9rem;">Your Name</label>
+            <input type="text" name="buyerName" required style="width: 100%; padding: 0.5rem; border: 1px solid var(--border-color); border-radius: 4px;">
+        </div>
+        <div>
+            <label style="font-weight: bold; font-size: 0.9rem;">Your Email (So they can reply)</label>
+            <input type="email" name="buyerEmail" required style="width: 100%; padding: 0.5rem; border: 1px solid var(--border-color); border-radius: 4px;">
+        </div>
+        <div>
+            <label style="font-weight: bold; font-size: 0.9rem;">Message</label>
+            <textarea name="message" rows="4" required style="width: 100%; padding: 0.5rem; border: 1px solid var(--border-color); border-radius: 4px;">Hi, I'm interested in buying <%= book.title %>. Is it still available?</textarea>
+        </div>
+        <button type="submit" style="width: 100%;">Send Message</button>
+    </form>
+</div>
+            </div>
+        </div>
+    </main>
+</body>
+</html>
