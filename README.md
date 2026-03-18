@@ -27,9 +27,9 @@ BookExchange connects students who want to sell textbooks with students who need
 
 | Homepage & Search | Book Details & Posting |
 | :---: | :---: |
-| <img src="docs/IMG-20260317-WA0015.jpg" width="400" alt="Homepage"> | <img src="docs/IMG-20260317-WA0017.jpg" width="400" alt="Book Details"> |
+| <img src="docs/Web Application Images/Home_page.png" width="400" alt="Homepage"> | <img src="docs/Web Application Images/Post_page.png" width="400" alt="Book Details"> |
 | **Search Results** | **My Listings** |
-| <img src="docs/IMG-20260317-WA0016.jpg" width="400" alt="Search Results"> | <img src="docs/IMG-20260317-WA0018.jpg" width="400" alt="My Listings"> |
+| <img src="docs/Web Application Images/Search_page.png" width="400" alt="Search Results"> | <img src="docs/Web Application Images/my-listingspage.png" width="400" alt="My Listings"> |
 
 ---
 
