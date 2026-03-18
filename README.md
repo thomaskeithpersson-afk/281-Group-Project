@@ -97,4 +97,4 @@ This project is a functional prototype designed for a local environment. The fol
 ## 🎓 Course
 ENSE 281 - Software Engineering Management University of Regina
 
-** Instructor: Dr. Tim Maciag
+**Instructor: Dr. Tim Maciag**
