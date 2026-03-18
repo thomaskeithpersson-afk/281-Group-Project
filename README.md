@@ -52,6 +52,7 @@ BookExchange connects students who want to sell textbooks with students who need
    ```bash
       git clone [https://github.com/thomaskeithpersson-afk/281-Group-Project.git](https://github.com/thomaskeithpersson-afk/281-Group-Project.git)
 2. **Navigate to the app folder:**
+    ```bash
     cd 281-Group-Project
 
 3. **Run the application:**
