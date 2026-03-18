@@ -51,10 +51,10 @@ BookExchange connects students who want to sell textbooks with students who need
 1. **Clone the repository:**
    ```bash
       git clone [https://github.com/thomaskeithpersson-afk/281-Group-Project.git](https://github.com/thomaskeithpersson-afk/281-Group-Project.git)
-2. ** Navigate to the app folder:
+2. **Navigate to the app folder:**
     cd 281-Group-Project
 
-3. ** Run the application:
+3. **Run the application:**
     Follow local environment setup instructions, typically npm install followed by npm start, or open the main index.html file directly in your          browser).
 
 ## 🚧 Current Limitations (Out of Scope)
@@ -69,7 +69,7 @@ This project is a functional prototype designed for a local environment. The fol
 - Paid hosting and public domain deployment.
 
 ## 📂 File Structure
-Plaintext
+```
 281-Group-Project/
 ├── app/
 │   ├── index.html
@@ -79,15 +79,11 @@ Plaintext
 │   ├── style.css
 │   └── script.js
 ├── docs/
-│   ├── project-status-report.docx
-│   ├── project-status-report.pdf
-│   ├── scrum-report 1-out.docx
-|   ├── scrum-report 2-out.docx
-│   ├── team-reflection.md
+│   ├── project-documents
 │   └── (screenshot images)
 ├── .gitignore
 └── README.md
-
+```
 ## 👥 Team
 - Chop Peter Kur
 
