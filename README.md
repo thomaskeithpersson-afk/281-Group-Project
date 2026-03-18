@@ -1,42 +1,74 @@
-# BookExchange
+# 📚 BookExchange
+
+<p align="left">
+  <img src="https://img.shields.io/badge/Status-Prototype-orange" alt="Status">
+  <img src="https://img.shields.io/badge/Course-ENSE%20281-blue" alt="ENSE 281">
+  <img src="https://img.shields.io/badge/Tech-HTML%20|%20CSS%20|%20JS-yellow" alt="Tech Stack">
+</p>
 
 A web application that allows university students to buy and sell used textbooks directly to each other.
 
-## Project Description
-
+## 📖 Project Description
 BookExchange connects students who want to sell textbooks with students who need to buy them. Sellers post their books with details like course code, condition, and price. Buyers search by course code or title, find what they need, and contact sellers directly to arrange an in-person exchange on campus.
 
-## Problem
+## ⚠️ Problem
+- Textbooks cost $100-$300 per book.
+- Campus bookstore buyback gives only 10-20% of original price.
+- No campus-specific platform to connect student buyers and sellers.
 
-- Textbooks cost $100-$300 per book
-- Campus bookstore buyback gives only 10-20% of original price
-- No campus-specific platform to connect student buyers and sellers
+## 💡 Solution
+- Buyers save 30-70% compared to bookstore prices.
+- Sellers get 2-3x more than bookstore buyback.
+- Books get reused instead of wasted.
 
-## Solution
+---
 
-- Buyers save 30-70% compared to bookstore prices
-- Sellers get 2-3x more than bookstore buyback
-- Books get reused instead of wasted
+## 📸 Prototype Gallery
 
-## Features
+| Homepage & Search | Book Details & Posting |
+| :---: | :---: |
+| <img src="docs/IMG-20260317-WA0015.jpg" width="400" alt="Homepage"> | <img src="docs/IMG-20260317-WA0017.jpg" width="400" alt="Book Details"> |
+| **Search Results** | **My Listings** |
+| <img src="docs/IMG-20260317-WA0016.jpg" width="400" alt="Search Results"> | <img src="docs/IMG-20260317-WA0018.jpg" width="400" alt="My Listings"> |
 
-- Post book listings with title, course code, condition, and price
-- Browse all available listings
-- Search by course code or book title
-- View listing details and seller contact info
-- Mark listings as sold
-- Delete listings
+---
 
-## Tech Stack
+## 🚀 Features
+- Post book listings with title, course code, condition, and price.
+- Browse all available listings.
+- Search by course code or book title.
+- View listing details and seller contact info.
+- Mark listings as sold / Delete listings.
 
+## ⚙️ Tech Stack
 - HTML5
 - CSS3
 - JavaScript (Vanilla)
 - LocalStorage
 - Git/GitHub
 
-## File Structure
-```
+## 💻 How to Run the Project (Localhost)
+1. **Clone the repository:**
+   ```bash
+2. **Navigate to the app folder:
+    cd 281-Group-Project
+
+3. **Run the application:
+    Follow local environment setup instructions, typically npm install followed by npm start, or open the main index.html file directly in your          browser).
+
+## 🚧 Current Limitations (Out of Scope)
+This project is a functional prototype designed for a local environment. The following items were intentionally scoped out for this deliverable:
+
+- Secure, production-ready user authentication.
+
+- Built-in messaging (communication is handled via email).
+
+- Peer rating, review, and trust mechanisms.
+
+- Paid hosting and public domain deployment.
+
+## 📂 File Structure
+Plaintext
 281-Group-Project/
 ├── app/
 │   ├── index.html
@@ -46,26 +78,26 @@ BookExchange connects students who want to sell textbooks with students who need
 │   ├── style.css
 │   └── script.js
 ├── docs/
-│   └── (project documents)
+│   ├── project-status-report.docx
+│   ├── project-status-report.pdf
+│   ├── scrum-report 1-out.docx
+|   ├── scrum-report 2-out.docx
+│   ├── team-reflection.md
+│   └── (screenshot images)
 ├── .gitignore
 └── README.md
-```
 
-## Team
-
+## 👥 Team
 - Chop Peter Kur
-- Thomas Persson 
-- David James-Nwokocha 
+
+- Thomas Persson
+
+- David James-Nwokocha
+
 - Shaikh Chand Muhammad Shami
 
-## Course
+## 🎓 Course
+ENSE 281 - Software Engineering Management University of Regina
 
-ENSE 281 - Software Engineering Management
-University of Regina  
-Instructor: Dr.Tim Maciag
-
-## How to Run
-
-1. Clone the repository
-2. Open `app/index.html` in your browser
-3. Start browsing or posting books
+Instructor: Dr. Tim Maciag
+   git clone [https://github.com/thomaskeithpersson-afk/281-Group-Project.git](https://github.com/thomaskeithpersson-afk/281-Group-Project.git)
