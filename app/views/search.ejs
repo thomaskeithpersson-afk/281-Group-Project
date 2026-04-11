@@ -87,37 +87,38 @@
                 <button type="submit" class="apply-filters-btn">Apply Filters</button>
             </form>
         </aside>
-
-        <section class="search-results">
+       <section class="search-results">
             <h1>Search Results</h1>
-            <p>Showing <%= books.length %> matches
-                <% if (searchParams.q || searchParams.department || searchParams.course) { %>
-                    for: <span style="font-weight: bold; color: var(--ur-green);"><%= searchParams.q %> <%= searchParams.department %> <%= searchParams.course %></span>
-                <% } %>
-            </p>
-            
-            <% if (books.length === 0) { %>
-                <div class="empty-state" style="margin-top: 2rem; padding: 3rem; background: white; border: 1px solid var(--border-color); border-radius: 8px;">
-                    <h3 style="margin-top: 0; color: var(--ur-green);">No textbooks found.</h3>
-                    <p style="color: var(--text-muted);">Try adjusting your filters or search terms to find what you're looking for.</p>
-                </div>
-            <% } else { %>
-                <div class="book-grid">
-                    <% books.forEach(book => { %>
-                        <div class="book-card">
-                            <img src="<%= book.imageUrl %>" alt="<%= book.title %>">
-                            <div class="book-details">
-                                <span class="dept-tag"><%= book.department %></span>
-                                <h4><%= book.title %></h4>
-                                <p class="course"><%= book.department %> <%= book.courseNumber %></p>
-                                <p class="price">$<%= book.price %></p>
-                                <p class="condition">Condition: <%= book.condition %></p>
-                                <a href="/book/<%= book.id %>" style="text-decoration: none; width: 100%;">
-                                    <button class="view-details-btn">View Details</button>
-                                </a>
+            <% if (hasSearched) { %>
+                <h2 style="margin-bottom: 1rem; color: var(--ur-green);">Showing <%= books.length %> matches</h2>
+                <% if (books.length > 0) { %>
+                    <div class="book-grid">
+                        <% books.forEach(book => { %>
+                            <div class="book-card">
+                                <img src="<%= book.imageUrl %>" alt="<%= book.title %>">
+                                <div class="book-details">
+                                    <span class="dept-tag"><%= book.department %></span>
+                                    <h4><%= book.title %></h4>
+                                    <p class="course"><%= book.department %> <%= book.courseNumber %></p>
+                                    <p class="price">$<%= book.price %></p>
+                                    <p class="condition">Condition: <%= book.condition %></p>
+                                    <a href="/book/<%= book.id %>" style="text-decoration: none; width: 100%;">
+                                        <button class="view-details-btn">View Details</button>
+                                    </a>
+                                </div>
                             </div>
-                        </div>
-                    <% }) %>
+                        <% }) %>
+                    </div>
+                <% } else { %>
+                    <div class="empty-state" style="margin-top: 2rem; padding: 3rem; background: white; border: 1px solid var(--border-color); border-radius: 8px;">
+                        <h3 style="margin-top: 0; color: var(--ur-green);">No textbooks found.</h3>
+                        <p style="color: var(--text-muted);">Try adjusting your filters or search terms to find what you're looking for.</p>
+                    </div>
+                <% } %>
+            <% } else { %>
+                <div class="initial-search-prompt" style="text-align: center; padding: 4rem 2rem;">
+                    <h2 style="color: var(--ur-green); margin-bottom: 1rem;">Find your next textbook</h2>
+                    <p style="color: var(--text-muted); font-size: 1.1rem;">Use the filters on the left to search by department, course code, or price.</p>
                 </div>
             <% } %>
         </section>
