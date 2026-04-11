@@ -1,80 +1,132 @@
 const Book = require('../models/bookModel');
-const path = require('path');
 const nodemailer = require('nodemailer');
-const getHomePage = (req, res) => {
-    const books = Book.getBooks();
-    books.sort((a, b) => b.DateAdded - a.DateAdded);
-    res.render('index', { books, user: req.session });
+const getHomePage = async (req, res) => {
+    try {
+        const books = await Book.find().sort({ DateAdded: -1 });
+        res.render('index', { books });
+    } catch (error) {
+        console.error(error);
+        res.status(500).send("Database error.");
+    }
 };
-const getAdvancedSearchPage = (req, res) => {
-    const query = req.query; 
-    const books = Book.searchBooks(query);
-    res.render('search', { books, searchParams: query, user: req.session });
-};
-const getUserListings = (req, res) => {
-    if (!req.session.userId) return res.redirect('/login');
+const getAdvancedSearchPage = async (req, res) => {
+    const hasSearched = Object.keys(req.query).length > 0;
+    let searchResults = [];
+    if (hasSearched) {
+        let query = {};
+        
+        if (req.query.q) {
+            query.title = { $regex: req.query.q, $options: 'i' }; 
+        }
+        if (req.query.department) query.department = req.query.department;
+        if (req.query.course) query.courseNumber = { $regex: req.query.course, $options: 'i' };
+        if (req.query.condition) query.condition = req.query.condition;
+        if (req.query.minPrice || req.query.maxPrice) {
+            query.price = {};
+            if (req.query.minPrice) query.price.$gte = Number(req.query.minPrice);
+            if (req.query.maxPrice) query.price.$lte = Number(req.query.maxPrice);
+        }
 
-    const books = Book.getBooksByUser(req.session.userId);
-    res.render('my-listings', { books, user: req.session });
+        try {
+            searchResults = await Book.find(query).sort({ DateAdded: -1 });
+        } catch (error) {
+            console.error("Search error:", error);
+        }
+    }
+    res.render('search', { 
+        books: searchResults, 
+        hasSearched: hasSearched,
+        searchParams: req.query 
+    });
+};
+const getUserListings = async (req, res) => {
+    if (!req.user) return res.redirect('/login'); 
+
+    try {
+        const books = await Book.find({ sellerId: req.user._id });
+        res.render('my-listings', { books });
+    } catch (error) {
+        console.error(error);
+        res.status(500).send("Database error.");
+    }
 };
 const getPostPage = (req, res) => {
-    if (!req.session.userId) return res.redirect('/login'); 
-    res.render('post', { user: req.session });
+    if (!req.user) return res.redirect('/login'); 
+    res.render('post');
 };
-
-const createListing = (req, res) => {
-    if (!req.session.userId) return res.redirect('/login');
-    const { title, department, courseNumber, price, condition, sellerName, contact, notes } = req.body;
+const createListing = async (req, res) => {
+    if (!req.user) return res.redirect('/login');
     
+    const { title, department, courseNumber, price, condition, contact, notes } = req.body;
     const imageUrl = req.file ? `/uploads/${req.file.filename}` : '/uploads/default-placeholder.jpg';
-    Book.createListing(
-        title, department, courseNumber, parseFloat(price), 
-        condition, imageUrl, req.session.userId, 
-        sellerName, contact, notes
-    );
     
-    res.redirect('/');
-};
-
-module.exports = { getHomePage, getAdvancedSearchPage, getUserListings, getPostPage, createListing };
-const getBookDetails = (req, res) => {
-    const bookId = req.params.id;
-    const book = Book.getBookById(bookId);
-    
-    if (!book) {
-        return res.status(404).send('Book not found');
+    try {
+        const newBook = new Book({
+            title,
+            department,
+            courseNumber,
+            price: parseFloat(price),
+            condition,
+            imageUrl,
+            sellerId: req.user._id,
+            sellerName: req.user.username,
+            contact: contact, 
+            notes
+        });
+        await newBook.save(); 
+        res.redirect('/');
+    } catch (error) {
+        console.error("Error saving book:", error);
+        res.status(500).send("Error saving your listing.");
     }
-    
-    res.render('details', { book, user: req.session });
 };
-const deleteListing = (req, res) => {
-    if (!req.session.userId) return res.redirect('/login');
-
-    const bookId = req.params.id;
-    Book.deleteBook(bookId, req.session.userId);
-    res.redirect('/my-listings');
+const getBookDetails = async (req, res) => {
+    try {
+        const book = await Book.findById(req.params.id);
+        if (!book) return res.status(404).send('Book not found');
+        res.render('details', { book });
+    } catch (error) {
+        console.error(error);
+        res.status(500).send("Invalid Book ID.");
+    }
+};
+const deleteListing = async (req, res) => {
+    if (!req.user) return res.redirect('/login');
+    try {
+        await Book.findOneAndDelete({ _id: req.params.id, sellerId: req.user._id });
+        res.redirect('/my-listings');
+    } catch (error) {
+        console.error(error);
+        res.status(500).send("Error deleting book.");
+    }
 };
 const handleContactSeller = async (req, res) => {
-    const bookId = req.params.id;
-    const { buyerName, buyerEmail, message } = req.body;
-    const book = Book.getBookById(bookId);
-    
-    if (!book || !book.contact) {
-        return res.status(404).send("Seller contact information not found.");
-    }
-    const transporter = nodemailer.createTransport({
-        service: 'gmail', 
-        auth: {
-            user: 'YOUR_EMAIL@gmail.com', 
-            pass: 'YOUR_APP_PASSWORD'     
+    try {
+        const book = await Book.findById(req.params.id);
+        if (!book || !book.contact) {
+            return res.status(404).send("Seller contact information not found.");
         }
-    });
-    const mailOptions = {
-        from: 'BookExchange Notifications <YOUR_EMAIL@gmail.com>',
-        to: book.contact,
-        replyTo: buyerEmail, 
-        subject: `BookExchange: Someone wants to buy "${book.title}"!`,
-        text: `
+        if (!book.contact.includes('@')) {
+            console.error("Attempted to send email to invalid address:", book.contact);
+            return res.status(400).send("The seller did not provide a valid email address. Cannot send message.");
+        }
+        if (!book || !book.contact) {
+            return res.status(404).send("Seller contact information not found.");
+        }
+        const { buyerName, buyerEmail, message } = req.body;
+        const transporter = nodemailer.createTransport({
+            service: 'gmail', 
+            auth: {
+                user: 'tandiajames10@gmail.com', 
+                pass: 'bbmqmkmoxpvkodtb'     
+            }
+        });
+        const mailOptions = {
+            from: 'BookExchange Notifications <tandiajames10@gmail.com>',
+            to: book.contact,
+            replyTo: buyerEmail, 
+            subject: `BookExchange: Someone wants to buy "${book.title}"!`,
+            text: `
 Hello ${book.sellerName},
 
 Good news! Another student is interested in buying your textbook: ${book.title}.
@@ -88,14 +140,27 @@ Message from Buyer:
 To reply to the buyer and arrange the exchange, simply reply directly to this email!
 
 - The BookExchange Team
-        `
-    };
-    try {
+            `
+        };
         await transporter.sendMail(mailOptions);
-        res.redirect('/'); 
+        res.redirect('/success'); 
     } catch (error) {
         console.error("Email failed to send:", error);
         res.status(500).send("There was an error sending your message. Please try again.");
     }
 };
-module.exports = { getHomePage, getAdvancedSearchPage, getUserListings, getPostPage, createListing, getBookDetails, deleteListing, handleContactSeller };
+const getSuccessPage = (req, res) => {
+    res.render('success');
+};
+
+module.exports = { 
+    getHomePage, 
+    getAdvancedSearchPage, 
+    getUserListings, 
+    getPostPage, 
+    createListing, 
+    getBookDetails, 
+    deleteListing, 
+    handleContactSeller, 
+    getSuccessPage 
+};
